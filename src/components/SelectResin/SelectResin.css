@@ -1,0 +1,191 @@
+.resin {
+  transition: 0.3s;
+  width: 100%;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  /* margin: 0 auto; */
+  background: var(--color-white);
+  position: relative;
+}
+.resin_title {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 10rem 0px 3rem 0px;
+  color: #e10d2b;
+}
+
+.resin_container-img {
+  width: 171px;
+  height: 171px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: -11px 11px 10px rgba(0, 74, 116, 0.21);
+  background-color: #0585c6;
+  gap: 1rem;
+}
+
+.resin_container-title {
+  width: 129px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 19px;
+  font-family: var(--tipo-principal);
+}
+
+/* .resin_form {
+    height: 400px;
+  width: 355px;
+  padding: 1em;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.resin_form-select {
+  cursor: pointer;
+  margin-bottom: 2em;
+  width: 355px;
+  padding: 0.5em;
+  border: 1px solid #e10d2b;
+  border-radius: 6px;
+  box-shadow: -4px 6px 7.69px rgba(0, 0, 0, 0.3);
+
+}
+.resin_form-option{
+ font-size: 10px;
+ width: 335px;
+ overflow-x: scroll;
+} */
+
+.resin_select {
+  display: flex;
+  flex-direction: column;
+  max-width: 355px;
+  width: 100%;
+  gap: 10px;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.resin_select-badge {
+  background: white;
+  border: 1px solid #ff0000;
+  padding: 5px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 400;
+  border-radius: 5px;
+  box-shadow: -4px 6px 7.699999809265137px -1px #0000004d;
+}
+
+.resin_select-option {
+  max-width: 355px;
+  width: 100%;
+  top: 561px;
+  left: 19px;
+  border-radius: 14px;
+  border: 1px;
+  border: 1px solid #ff0000;
+  font-size: 12px;
+  padding: 5px;
+  box-shadow: -4px 6px 7.699999809265137px -1px #0000004d;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.resin_select-option > li {
+  padding: 5px 7px 5px 7px;
+  cursor: pointer;
+  background: rgba(255, 0, 0, 0.127);
+  transition: 0.3s;
+  border-radius: 10px;
+}
+
+.resin_select-option > li:hover {
+  transition: 0.3s;
+  background: #ff000056;
+  border-radius: 10px;
+}
+.resin_select-option > li:focus {
+  transition: 0.3s;
+  background: #ff000056;
+  border-radius: 10px;
+}
+
+.resin_form-button {
+  max-width: 150px;
+  height: 38px;
+  width: 100%;
+  padding: 0px 10px 0px 10px;
+  border-radius: 10px;
+  box-shadow: 0 6px 13.1px rgba(112, 0, 0, 0.48);
+  background-color: #e10d2b;
+  color: #fff;
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: 0.3s;
+  font-family: var(--tipo-secundaria);
+  display: flex;
+  align-items: center;
+}
+
+.resin_content-btn {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+}
+
+.resin__arrow {
+  color: red;
+  cursor: pointer;
+  text-shadow: 0 6px 13.1px rgba(112, 0, 0, 0.48);
+  transition: 0.3s;
+}
+.resin_form-button:active,
+.resin__arrow:active {
+  transition: 0.3s;
+  opacity: 50%;
+}
+
+.resin_select-alert {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 0, 0, 0.303);
+  width: 250px;
+  margin: 0 auto;
+  padding: 5px;
+  border-radius: 5px;
+  color: red;
+  font-weight: 500;
+}
+/* media quierys  */
+
+@media (width > 768px) {
+  .resin {
+    transition: 0.3s;
+    width: 25rem;
+    height: 95vh;
+    margin: 2.5vh auto;
+    border-radius: 2.5rem;
+    box-shadow: 0 0 5px #7000007a;
+    overflow: hidden;
+  }
+}
+
+@media (height < 794px) and (width <= 1024px) {
+  .resin {
+    overflow: scroll;
+  }
+}

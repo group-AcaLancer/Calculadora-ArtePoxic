@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
+
 import "./Home.css";
+
 
 const Home = () => {
 
-
+ 
 
   return (
     <section className="home">
@@ -13,7 +15,9 @@ const Home = () => {
         alt="Logo ArtePoxic"
       />
       <h1 className="home_title">Calculadora de resina</h1>
-      <Link to={"/seleccion_resina"} className="home_btn">Iniciar</Link>
+      <Link to={"/seleccion_resina"} className="home_btn">
+        Iniciar
+      </Link>
     </section>
   );
 };

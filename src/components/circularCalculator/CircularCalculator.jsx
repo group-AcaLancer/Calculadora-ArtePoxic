@@ -2,22 +2,15 @@ import circular from "/img/icons/icon-3.png";
 import { useForm } from "react-hook-form";
 import "./CircularCalculator.css";
 import { Link } from "react-router-dom";
+import { resResinaselecionadaCircular } from "../../utilities/selecionResina/seleccionRecina";
 
 const CircularCalculator = () => {
-  const {
-    register,
-    reset,
-    formState: { errors },
-    handleSubmit,
-  } = useForm();
 
+  const { register, reset, formState: { errors },  handleSubmit, } = useForm();
+  const {result, setData } = resResinaselecionadaCircular()
   const submit = (data) => {
-    console.log(data);
-
-    reset({
-      diameter: "",
-      density: "",
-    });
+    setData(data)
+    reset();
   };
 
   return (
@@ -34,21 +27,22 @@ const CircularCalculator = () => {
             type="number"
             placeholder="Diámetro (cm)"
             className="circular__input"
-            {...register("diameter", { required: true })}
+            {...register("diametro", { required: true })}
           />
           <small className="circular__message">
-            {errors.diameter?.type === "required" && "* Diameter is required"}
+            {errors.diameter?.type === "required" && "* Diametro es requerido"}
           </small>
         </div>
         <div className="circular__row">
           <input
+            step="0.1"
             type="number"
             placeholder="Espesor (mm)"
             className="circular__input"
-            {...register("density", { required: true })}
+            {...register("espesor", { required: true })}
           />
           <small className="circular__message">
-            {errors.density?.type === "required" && "* Density is required"}
+            {errors.density?.type === "required" && "* Densidad es requeridad"}
           </small>
         </div>
         <div
@@ -61,17 +55,17 @@ const CircularCalculator = () => {
           }}
         >
           <button className="circular__btn">Calcular</button>
-          <Link to={"/"} class="bx bxs-home bx-md circular__arrow"></Link>
+          <Link to={"/"} className="bx bxs-home bx-md circular__arrow"></Link>
         </div>
       </form>
       {/* <!-- CIRCULAR CALCULATOR FORM --> */}
       <div className="circular__summary">
         <h3 className="circular__subtitle--summary">Resultado (gr)</h3>
         <span className="circular__output">
-          Catalizador (gr.) <strong>100</strong>
+         {result?.catalizador ?  result.catalizador : 'Catalizador' } (gr.)
         </span>
         <span className="circular__output">
-          Resina (gr.) <strong>100</strong>
+        {result?.resina ?  result.resina : 'Resina' } (gr.)
         </span>
       </div>
     </section>

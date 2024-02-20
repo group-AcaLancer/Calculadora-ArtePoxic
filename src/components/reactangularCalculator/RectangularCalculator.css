@@ -140,20 +140,21 @@
 }
 
 .rectangular__output {
-  width: 90%;
+  width: 70%;
   height: 40px;
-  outline: none;
+  font-family: var(--tipo-terciaria);
   border-radius: 6px;
   border: 1px solid #ffffff;
   color: #ffffff;
-  font-family: Century Gothic;
+  
   line-height: 18.39px;
   font-size: 0.8rem;
   font-weight: 400;
   padding: 0.3rem;
-  display: grid;
-  grid-template-columns: 1fr 40%;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
 }
 
 .rectangular__output strong {

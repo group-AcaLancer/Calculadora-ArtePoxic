@@ -2,6 +2,7 @@ import rectangular from "/img/icons/icon-2.png";
 import { useForm } from "react-hook-form";
 import "./RectangularCalculator.css";
 import { Link } from "react-router-dom";
+import { resResinaselecionadaRectangular } from "../../utilities/selecionResina/seleccionRecina";
 
 const RectangularCalculator = () => {
   const {
@@ -10,10 +11,9 @@ const RectangularCalculator = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-
+  const { result, setData } = resResinaselecionadaRectangular();
   const submit = (data) => {
-    console.log(data);
-
+    setData(data);
     reset();
   };
 
@@ -42,7 +42,7 @@ const RectangularCalculator = () => {
             type="number"
             placeholder="Altura (cm)"
             className="rectangular__input"
-            {...register("height", { required: true })}
+            {...register("altura", { required: true })}
           />
           <small className="rectangular__message">
             {errors.height?.type === "required" && "* Height is required"}
@@ -53,7 +53,7 @@ const RectangularCalculator = () => {
             type="number"
             placeholder="Espesor (mm)"
             className="rectangular__input"
-            {...register("density", { required: true })}
+            {...register("espesor", { required: true })}
           />
           <small className="rectangular__message">
             {errors.density?.type === "required" && "* Density is required"}
@@ -80,10 +80,10 @@ const RectangularCalculator = () => {
       <div className="rectangular__summary">
         <h3 className="rectangular__subtitle--summary">Resultado (gr)</h3>
         <span className="rectangular__output">
-          Catalizador (gr.) <strong>100</strong>
+        {result.catalizador ?  result.catalizador : 'Catalizador' } (gr.)
         </span>
         <span className="rectangular__output">
-          Resina (gr.) <strong>100</strong>
+        {result.resina ?  result.resina : 'Resina' } (gr.)
         </span>
       </div>
     </section>

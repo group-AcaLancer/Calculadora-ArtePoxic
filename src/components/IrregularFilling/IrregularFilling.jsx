@@ -1,9 +1,23 @@
 import { Link } from "react-router-dom";
+import rectangular from "/img/icons/icon-3.png";
 import "./IrregularFilling.css";
+import { useForm } from "react-hook-form";
+import { resResinaselecionadaRelleno } from "../../utilities/selecionResina/seleccionRecina";
 
 //Se debe optomizar un poquito los tamaños ya que quedo bajando mucho con el scroll.
 
 const IrregularFilling = () => {
+
+
+  const { register, reset, formState: { errors },  handleSubmit, } = useForm();
+  const {result, setData } = resResinaselecionadaRelleno()
+  const submit = (data) => {
+    setData(data)
+    reset();
+  };
+
+
+
   return (
     <section className="irregular-filling">
       <div className="irregular-filling__content">
@@ -38,34 +52,29 @@ const IrregularFilling = () => {
         </p>
       </div>
 
-      <form className="irregular-filling__form">
-        <div className="irregular-filling__form-content">
-          <div className="irregular-filling__form-content-input">
-            {/* <label className="irregular-filling__form-label" htmlFor="area">
-              Área (cm)
-            </label> */}
-            <input
-              className="irregular-filling__form-imput"
-              type="number"
-              name="area"
-              required="true"
-              placeholder="Área (cm²)"
-            />
-          </div>
-
-          <div className="irregular-filling__form-content-input">
-            {/* <label className="irregular-filling__form-label" htmlFor="masa">
-              Espesor (cm)
-            </label> */}
-
-            <input
-              className="irregular-filling__form-imput"
-              type="number"
-              name="masa"
-              required="true"
-              placeholder="Espesor (mm)"
-            />
-          </div>
+      <form className="circular__form" onSubmit={handleSubmit(submit)}>
+        <div className="circular__row">
+          <input
+            type="number"
+            placeholder="Diámetro (cm)"
+            className="circular__input"
+            {...register("diametro", { required: true })}
+          />
+          <small className="circular__message">
+            {errors.diameter?.type === "required" && "* Diametro es requerido"}
+          </small>
+        </div>
+        <div className="circular__row">
+          <input
+            step="0.1"
+            type="number"
+            placeholder="Espesor (mm)"
+            className="circular__input"
+            {...register("espesor", { required: true })}
+          />
+          <small className="circular__message">
+            {errors.density?.type === "required" && "* Densidad es requeridad"}
+          </small>
         </div>
         <div
           style={{
@@ -73,17 +82,22 @@ const IrregularFilling = () => {
             justifyContent: "space-around",
             alignItems: "center",
             marginTop: "25px",
+            width: "100%",
           }}
         >
-          <button className="irregular-filling__form-button">Calcular</button>
-          <Link to={"/"} className="bx bxs-home bx-md irregular__home"></Link>
+          <button className="circular__btn">Calcular</button>
+          <Link to={"/"} className="bx bxs-home bx-md circular__arrow"></Link>
         </div>
       </form>
 
-      <div className="irregular-filling__result">
-        <h3 className="irregular-filling__result-title">Resultado (gr)</h3>
-        <div className="irregular-filling__result-gr">Catalizador (gr.)</div>
-        <div className="irregular-filling__result-gr">Resina (gr.)</div>
+      <div className="circular__summary">
+        <h3 className="circular__subtitle--summary">Resultado (gr)</h3>
+        <span className="circular__output">
+         {result.catalizador ?  result.catalizador : 'Catalizador' } (gr.)
+        </span>
+        <span className="circular__output">
+        {result.resina ?  result.resina : 'Resina' } (gr.)
+        </span>
       </div>
     </section>
   );

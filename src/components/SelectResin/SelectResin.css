@@ -1,19 +1,24 @@
 .resin {
   transition: 0.3s;
   width: 100%;
-  padding: 0 1rem;
   display: flex;
   align-items: center;
   flex-direction: column;
-  /* margin: 0 auto; */
+  gap: 20px;
   background: var(--color-white);
-  position: relative;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  padding: 0px 10px;
 }
 .resin_title {
   text-align: center;
   font-size: 1.2rem;
   font-weight: 700;
-  margin: 10rem 0px 3rem 0px;
   color: #e10d2b;
 }
 
@@ -38,87 +43,73 @@
   font-family: var(--tipo-principal);
 }
 
-/* .resin_form {
-    height: 400px;
-  width: 355px;
-  padding: 1em;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-.resin_form-select {
-  cursor: pointer;
-  margin-bottom: 2em;
-  width: 355px;
-  padding: 0.5em;
-  border: 1px solid #e10d2b;
-  border-radius: 6px;
-  box-shadow: -4px 6px 7.69px rgba(0, 0, 0, 0.3);
-
-}
-.resin_form-option{
- font-size: 10px;
- width: 335px;
- overflow-x: scroll;
-} */
-
 .resin_select {
+  position: relative;
   display: flex;
   flex-direction: column;
   max-width: 355px;
   width: 100%;
   gap: 10px;
-  margin-top: 1.5rem;
-  margin-bottom: 2rem;
 }
 
 .resin_select-badge {
+  max-width: 355px;
   background: white;
   border: 1px solid #ff0000;
+  color: #333;
   padding: 5px;
+  padding-left: 20px;
   height: 40px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 15px;
+  justify-content: space-between;
+  font-size: 1rem;
   font-weight: 400;
+  line-height: 18px;
   border-radius: 5px;
-  box-shadow: -4px 6px 7.699999809265137px -1px #0000004d;
+  box-shadow: 0px 5px 5px -1px #0000004d;
+  cursor: pointer;
 }
-
-.resin_select-option {
-  max-width: 355px;
-  width: 100%;
-  top: 561px;
-  left: 19px;
-  border-radius: 14px;
-  border: 1px;
-  border: 1px solid #ff0000;
-  font-size: 12px;
-  padding: 5px;
-  box-shadow: -4px 6px 7.699999809265137px -1px #0000004d;
+.resin_options {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
 }
-.resin_select-option > li {
-  padding: 5px 7px 5px 7px;
-  cursor: pointer;
-  background: rgba(255, 0, 0, 0.127);
-  transition: 0.3s;
+.resin_select-option {
+  position: absolute;
+  top: 120%; /* Coloca el menú desplegable justo debajo del botón */
+  left: 0;
+  background-color: white; /* Ajusta el color de fondo según tus necesidades */
+  border: 1px solid #ff0000; /* Añade un borde para separar visualmente el menú */
   border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Añade una sombra suave */
+  display: none; /* Oculta el menú por defecto */
+}
+
+.resin_select:hover .resin_select-option {
+  display: block; /* Muestra el menú cuando el botón está en estado hover */
+}
+
+.resin_select-option > li {
+  padding: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 10px 10px 0px 0px;
+}
+.resin_select-option > li:nth-child(2) {
+  border-radius: 0px 0px 10px 10px;
+  border-top: 2px solid #ff000056;
 }
 
 .resin_select-option > li:hover {
   transition: 0.3s;
   background: #ff000056;
-  border-radius: 10px;
 }
 .resin_select-option > li:focus {
   transition: 0.3s;
   background: #ff000056;
-  border-radius: 10px;
 }
 
 .resin_form-button {
@@ -139,8 +130,6 @@
 }
 
 .resin_content-btn {
-  margin-top: 1rem;
-  margin-bottom: 2rem;
   display: flex;
   align-items: center;
   gap: 5rem;
@@ -162,13 +151,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 0, 0, 0.303);
   width: 250px;
-  margin: 0 auto;
   padding: 5px;
   border-radius: 5px;
   color: red;
   font-weight: 500;
+  border-bottom: 1px solid red;
 }
 /* media quierys  */
 
@@ -186,6 +174,5 @@
 
 @media (height < 794px) and (width <= 1024px) {
   .resin {
-    overflow: scroll;
   }
 }

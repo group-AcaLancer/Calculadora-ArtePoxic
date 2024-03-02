@@ -33,16 +33,20 @@
   --tipo-terciaria: "Montserrat", sans-serif;
 }
 
-/* Barra de desplazamiento
+/* Barra de desplazamiento */
 
-/* ::-webkit-scrollbar {
-/* ::-webkit-scrollbar {
-  background: ;
+::-webkit-scrollbar {
+  background: var(--color-shadow-red);
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-red);
+  border-radius: 50px;
 }
 
-::-webkit-scrollbar-thumb {
-  background: ;
-} */
+::-webkit-scrollbar:vertical {
+  width: 0.3rem;
+}
 
 * {
   margin: 0;

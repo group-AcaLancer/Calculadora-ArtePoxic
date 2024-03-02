@@ -69,8 +69,6 @@
   justify-content: center;
 }
 
-
-
 .circular__input {
   height: 45px;
   outline: 0;
@@ -97,7 +95,7 @@
   color: #ff0000;
 }
 
-.circular__btn-conten{
+.circular__btn-conten {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -182,8 +180,32 @@
     margin: 2.5vh auto;
     border-radius: 2.5rem;
     box-shadow: 0 0 5px #7000007a;
+    overflow-y: auto;
+    justify-content: start;
   }
-  .circular__output {
-    font-size: 1rem;
+}
+
+@media (width > 768px) and (height >= 768px) {
+  .circular {
+    justify-content: space-evenly;
+  }
+  .circular__form {
+    margin-bottom: 0;
+  }
+}
+
+@media (width > 768px) and (height >= 900px) {
+  .circular {
+    justify-content: space-evenly;
+  }
+  .circular__form {
+    margin: 0;
+  }
+  .circular__title {
+    font-size: 1.5rem;
+    margin: 3rem 0;
+  }
+  .circular__btn-conten {
+    margin-top: 3rem;
   }
 }

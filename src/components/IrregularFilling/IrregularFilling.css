@@ -45,17 +45,17 @@
 
 .irregular-filling__paragraph {
   width: 100%;
-  height: 205px;
-  font-size: 11px;
+  height: 15rem;
+  font-size: 0.8rem;
   font-weight: 400;
   line-height: 13.49px;
   color: rgba(0, 0, 0, 1);
   text-align: justify;
   overflow: hidden;
-  transition:height 1s ease-in-out;
+  transition: height 0.5s ease-in-out;
 }
 
-.irregular-filling__paragraph.onparagraph{
+.irregular-filling__paragraph.onparagraph {
   height: 54px;
 }
 
@@ -103,7 +103,7 @@
   text-align: center;
 }
 
-.irregular-filling__form-message-err{
+.irregular-filling__form-message-err {
   font-size: 15px;
   color: #ff0000;
 }
@@ -167,14 +167,14 @@
   font-weight: bold;
 }
 
-.container-chevron{
+.container-chevron {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 0.5em;
 }
 
-.chevron{
+.chevron {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -184,23 +184,32 @@
   font-size: 1.4em;
 }
 
-.irregular-filling__form-button-content{
+.irregular-filling__form-button-content {
   display: flex;
-  justify-Content: space-around;
-  align-Items: center;
+  justify-content: space-around;
+  align-items: center;
   width: 90%;
 }
 
-
 @media (width > 768px) {
   .irregular-filling {
-    background: var(--color-white);
-    max-width: 393px;
-    padding: 1rem;
-    margin: 0 auto;
+    width: 25rem;
     height: 95vh;
     margin: 2.5vh auto;
     border-radius: 2.5rem;
     box-shadow: 0 0 5px #7000007a;
+    overflow-y: auto;
+    justify-content: start;
+  }
+}
+
+@media (width > 768px) and (height >= 900px) {
+  .irregular-filling__paragraph {
+    font-size: 1rem;
+    line-height: 1.3rem;
+    height: 27rem;
+  }
+  .irregular-filling__paragraph.onparagraph {
+    height: 7rem;
   }
 }

@@ -92,11 +92,11 @@
   color: #ff0000;
 }
 
-.rectangular__btn-content{
+.rectangular__btn-content {
   display: flex;
-  justify-Content: space-around;
-  align-Items: center;
-  margin-Top: 25px;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 25px;
   width: 100%;
 }
 
@@ -134,11 +134,23 @@
     margin: 2.5vh auto;
     border-radius: 2.5rem;
     box-shadow: 0 0 5px #7000007a;
+    overflow-y: auto;
+    justify-content: start;
   }
 }
 
-@media (height < 794px) and (width <= 1024px) {
+@media (width > 768px) and (height >= 900px) {
   .rectangular {
-    overflow: scroll;
+    justify-content: space-evenly;
+  }
+  .rectangular__form {
+    margin: 0;
+  }
+  .rectangular__title {
+    font-size: 1.5rem;
+    margin: 2rem 0;
+  }
+  .rectangular__btn-content {
+    margin-top: 2.5rem;
   }
 }

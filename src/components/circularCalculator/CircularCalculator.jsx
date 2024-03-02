@@ -35,10 +35,11 @@ const CircularCalculator = () => {
             type="number"
             placeholder="Diámetro (cm)"
             className="circular__input"
+            step="any"
             {...register("diameter", { required: true })}
           />
           <small className="circular__message">
-            {errors.diameter?.type === "required" && "* Diameter is required"}
+            {errors.diameter?.type === "required" && "* Diámetro es requiredo"}
           </small>
         </div>
         <div className="circular__row">
@@ -46,20 +47,15 @@ const CircularCalculator = () => {
             type="number"
             placeholder="Espesor (mm)"
             className="circular__input"
+            step="any"
             {...register("density", { required: true })}
           />
           <small className="circular__message">
-            {errors.density?.type === "required" && "* Density is required"}
+            {errors.density?.type === "required" && "* Espesor es requiredo"}
           </small>
         </div>
         <div
-          style={{
-            display: "flex",
-            justifyContent: "space-around",
-            alignItems: "center",
-            marginTop: "25px",
-            width: "100%",
-          }}
+          className="circular__btn-conten"
         >
           <BtnBefore url={"/seleccion_de_forma"} />
           <button className="circular__btn">Calcular</button>

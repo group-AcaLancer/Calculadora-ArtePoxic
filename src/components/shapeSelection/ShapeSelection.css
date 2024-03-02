@@ -157,3 +157,34 @@
     font-size: 1.5rem;
   }
 }
+
+@media (width > 768px) and (height >= 599px) {
+  .shapeSelection{
+    gap: 1.5rem;
+  }
+  .shapeSelection__content{
+    padding: 0 1rem;
+    gap: 1.5rem;
+  }
+  .shapeSelection__title{
+    font-size: 1.2rem;
+  }
+}
+@media (width > 768px) and (height >= 720PX) {
+  .shapeSelection__title{
+    font-size: 1.5rem;
+  }
+  .shapeSelection__content{
+    height: 100%;
+    justify-content: space-evenly;
+  }
+
+}
+@media (width > 768px) and (height >= 1024px) {
+  .shapeSelection__content-btn > div {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+

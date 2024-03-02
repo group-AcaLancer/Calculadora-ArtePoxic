@@ -44,14 +44,23 @@
 }
 
 .irregular-filling__paragraph {
+  width: 100%;
+  height: 205px;
   font-size: 11px;
   font-weight: 400;
   line-height: 13.49px;
   color: rgba(0, 0, 0, 1);
   text-align: justify;
+  overflow: hidden;
+  transition:height 1s ease-in-out;
+}
+
+.irregular-filling__paragraph.onparagraph{
+  height: 54px;
 }
 
 .irregular-filling__form {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -72,17 +81,31 @@
 
 .irregular-filling__form-content-input {
   display: flex;
+  width: 70%;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
 }
 
 .irregular-filling__form-imput {
-  text-align: center;
+  height: 45px;
+  outline: 0;
+  padding: 0.3rem 0.5rem;
+  font-size: 15px;
+  line-height: 18.39px;
+  border: 1.5px solid #ff0000;
+  border-radius: 6px;
+  box-shadow: -6px 6px 8px -1px #00000040;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
-  padding: 0.5em;
-  border: 1px solid rgba(255, 0, 0, 1);
-  border-radius: 5px;
+  text-align: center;
+}
+
+.irregular-filling__form-message-err{
+  font-size: 15px;
+  color: #ff0000;
 }
 
 .irregular-filling__form-button {
@@ -136,17 +159,38 @@
 }
 
 .irregularFilling__btn-more {
+  width: 100%;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 13.49px;
+  color: rgba(0, 0, 0, 1);
   font-weight: bold;
 }
 
-.less::after {
-  content: " ↑";
-  font-size: 1.1rem;
+.container-chevron{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5em;
 }
-.more::after {
-  content: " ↓";
-  font-size: 1.1rem;
+
+.chevron{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: rgba(255, 0, 0, 1);
+  color: #fff;
+  font-size: 1.4em;
 }
+
+.irregular-filling__form-button-content{
+  display: flex;
+  justify-Content: space-around;
+  align-Items: center;
+  width: 90%;
+}
+
 
 @media (width > 768px) {
   .irregular-filling {

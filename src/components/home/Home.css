@@ -64,3 +64,27 @@
     font-size: 2rem;
   }
 }
+
+@media (width >= 768px) and (height >= 599px) {
+ 
+  .home_logo{
+    max-width: 13rem;
+  }
+}
+
+@media (width > 768px) and (height >= 1024px) {
+  .home{
+    justify-content: center;
+    gap: 4rem;
+  }
+  .home_logo{
+    max-width: 17rem;
+  }
+  .home_title{
+    font-size: 2rem;
+  }
+  .home_btn{
+    margin-top: 2rem;
+  }
+}
+

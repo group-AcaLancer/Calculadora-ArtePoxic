@@ -69,6 +69,8 @@
   justify-content: center;
 }
 
+
+
 .circular__input {
   height: 45px;
   outline: 0;
@@ -93,6 +95,14 @@
 .circular__message {
   font-size: 15px;
   color: #ff0000;
+}
+
+.circular__btn-conten{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 25px;
+  width: 100%;
 }
 
 .circular__btn {

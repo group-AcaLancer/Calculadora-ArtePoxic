@@ -32,10 +32,11 @@ const RectangularCalculator = () => {
             type="number"
             placeholder="Base (cm)"
             className="rectangular__input"
+            step="any"
             {...register("base", { required: true })}
           />
           <small className="rectangular__message">
-            {errors.base?.type === "required" && "* Base is required"}
+            {errors.base?.type === "required" && "* Base es requireda"}
           </small>
         </div>
         <div className="rectangular__row">
@@ -43,10 +44,11 @@ const RectangularCalculator = () => {
             type="number"
             placeholder="Altura (cm)"
             className="rectangular__input"
+            step="any"
             {...register("height", { required: true })}
           />
           <small className="rectangular__message">
-            {errors.height?.type === "required" && "* Height is required"}
+            {errors.height?.type === "required" && "* Altura es requireda"}
           </small>
         </div>
         <div className="rectangular__row">
@@ -54,20 +56,15 @@ const RectangularCalculator = () => {
             type="number"
             placeholder="Espesor (mm)"
             className="rectangular__input"
+            step="any"
             {...register("density", { required: true })}
           />
           <small className="rectangular__message">
-            {errors.density?.type === "required" && "* Density is required"}
+            {errors.density?.type === "required" && "* Espesor es requiredo"}
           </small>
         </div>
         <div
-          style={{
-            display: "flex",
-            justifyContent: "space-around",
-            alignItems: "center",
-            marginTop: "25px",
-            width: "100%",
-          }}
+          className="rectangular__btn-content"
         >
           <BtnBefore url={"/seleccion_de_forma"} />
           <button className="rectangular__btn">Calcular</button>

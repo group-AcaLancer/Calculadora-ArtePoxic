@@ -92,6 +92,14 @@
   color: #ff0000;
 }
 
+.rectangular__btn-content{
+  display: flex;
+  justify-Content: space-around;
+  align-Items: center;
+  margin-Top: 25px;
+  width: 100%;
+}
+
 .rectangular__btn {
   padding: 0px 15px 0px 15px;
   background: #e10d2b;

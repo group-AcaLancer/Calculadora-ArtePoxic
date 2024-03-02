@@ -3,11 +3,23 @@ import { Link } from "react-router-dom";
 import "./IrregularFilling.css";
 import CalculatorResult from "../../shared/results/CalculatorResult";
 import BtnBefore from "../../shared/btnBefore/BtnBefore";
+import { useForm } from "react-hook-form";
 
 //Se debe optomizar un poquito los tamaños ya que quedo bajando mucho con el scroll.
 
 const IrregularFilling = () => {
-  const [mostrarCompleto, setMostrarCompleto] = useState(false);
+  const [mostrarCompleto, setMostrarCompleto] = useState(true);
+
+  const {register, reset, handleSubmit, formState: {errors}} = useForm()
+
+  const submit = (data) => { 
+    console.log(data)
+
+    reset({
+      area: '',
+      espesor: ''
+    })
+  }
 
   const toggleMostrarCompleto = () => {
     setMostrarCompleto(!mostrarCompleto);
@@ -24,9 +36,7 @@ const IrregularFilling = () => {
           />
           <h2 className="irregular-filling__header-title">Relleno Irregular</h2>
         </div>
-        <p className="irregular-filling__paragraph">
-          {mostrarCompleto ? (
-            <>
+        <p className={`irregular-filling__paragraph ${mostrarCompleto ? "onparagraph" : ""}`}>
               Calculo de Rendimiento <br />
               En caso de una pieza irregular para calcular la cantidad de
               producto, es necesario dividir la forma en figuras regulares mas
@@ -48,33 +58,20 @@ const IrregularFilling = () => {
               Ingrese los datos estimados de la figura.
               <br />
               <br />
-              <button
-                className="irregularFilling__btn-more less"
-                onClick={toggleMostrarCompleto}
-              >
-                Mostrar menos
-              </button>
-            </>
-          ) : (
-            <>
-              Calculo de Rendimiento <br />
-              En caso de una pieza irregular para calcular la cantidad de
-              producto, es necesario dividir la forma en figuras regulares mas
-              pequeñas e ir calculando sus medidas.
-              <br />
-              <br />
-              <button
-                className="irregularFilling__btn-more more"
-                onClick={toggleMostrarCompleto}
-              >
-                Mostrar más
-              </button>
-            </>
-          )}
         </p>
+        <button
+          className="irregularFilling__btn-more"
+          onClick={toggleMostrarCompleto}
+        >
+          {
+            mostrarCompleto 
+            ? <div className="container-chevron">Mostrar Más <span className="chevron"><i className='bx bx-chevron-down'></i></span></div> 
+            : <div className="container-chevron">Mostrar Menos <span className="chevron"><i className='bx bx-chevron-up'></i></span></div>
+          }
+        </button>
       </div>
 
-      <form className="irregular-filling__form">
+      <form onSubmit={handleSubmit(submit)} className="irregular-filling__form">
         <div className="irregular-filling__form-content">
           <div className="irregular-filling__form-content-input">
             {/* <label className="irregular-filling__form-label" htmlFor="area">
@@ -84,9 +81,11 @@ const IrregularFilling = () => {
               className="irregular-filling__form-imput"
               type="number"
               name="area"
-              required="true"
+              step="any"
               placeholder="Área (cm²)"
+              {...register('area', {required:true})}
             />
+            {errors.area && <span className='irregular-filling__form-message-err'>* Area es requireda</span>}
           </div>
 
           <div className="irregular-filling__form-content-input">
@@ -97,19 +96,16 @@ const IrregularFilling = () => {
             <input
               className="irregular-filling__form-imput"
               type="number"
-              name="masa"
-              required="true"
+              name="espesor"
+              step="any"
               placeholder="Espesor (mm)"
+              {...register('espesor', {required:true})}
             />
+            {errors.espesor && <span className='irregular-filling__form-message-err'>* Espesor es requiredo*</span>}
           </div>
         </div>
         <div
-          style={{
-            display: "flex",
-            justifyContent: "space-around",
-            alignItems: "center",
-            width: "100%",
-          }}
+          className="irregular-filling__form-button-content"
         >
           <BtnBefore url={"/seleccion_de_forma"} />
           <button className="irregular-filling__form-button">Calcular</button>

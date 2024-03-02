@@ -1,7 +1,8 @@
 import circular from "/img/icons/icon-3.png";
 import { useForm } from "react-hook-form";
 import "./CircularCalculator.css";
-import { Link } from "react-router-dom";
+import CalculatorResult from "../../shared/results/CalculatorResult";
+import BtnBefore from "../../shared/btnBefore/BtnBefore";
 
 const CircularCalculator = () => {
   const {
@@ -60,20 +61,12 @@ const CircularCalculator = () => {
             width: "100%",
           }}
         >
+          <BtnBefore url={"/seleccion_de_forma"} />
           <button className="circular__btn">Calcular</button>
-          <Link to={"/"} class="bx bxs-home bx-md circular__arrow"></Link>
         </div>
       </form>
       {/* <!-- CIRCULAR CALCULATOR FORM --> */}
-      <div className="circular__summary">
-        <h3 className="circular__subtitle--summary">Resultado (gr)</h3>
-        <span className="circular__output">
-          Catalizador (gr.) <strong>100</strong>
-        </span>
-        <span className="circular__output">
-          Resina (gr.) <strong>100</strong>
-        </span>
-      </div>
+      <CalculatorResult />
     </section>
   );
 };

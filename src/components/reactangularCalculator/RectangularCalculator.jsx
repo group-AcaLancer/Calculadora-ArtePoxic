@@ -1,7 +1,8 @@
 import rectangular from "/img/icons/icon-2.png";
 import { useForm } from "react-hook-form";
 import "./RectangularCalculator.css";
-import { Link } from "react-router-dom";
+import CalculatorResult from "../../shared/results/CalculatorResult";
+import BtnBefore from "../../shared/btnBefore/BtnBefore";
 
 const RectangularCalculator = () => {
   const {
@@ -68,24 +69,12 @@ const RectangularCalculator = () => {
             width: "100%",
           }}
         >
+          <BtnBefore url={"/seleccion_de_forma"} />
           <button className="rectangular__btn">Calcular</button>
-
-          <Link
-            to={"/"}
-            className="bx bxs-home bx-md rectangular__arrow"
-          ></Link>
         </div>
       </form>
       {/* <!-- RECTANGULAR CALCULATOR RESULT --> */}
-      <div className="rectangular__summary">
-        <h3 className="rectangular__subtitle--summary">Resultado (gr)</h3>
-        <span className="rectangular__output">
-          Catalizador (gr.) <strong>100</strong>
-        </span>
-        <span className="rectangular__output">
-          Resina (gr.) <strong>100</strong>
-        </span>
-      </div>
+      <CalculatorResult />
     </section>
   );
 };

@@ -1,0 +1,16 @@
+.btnNext__btn {
+  max-width: 150px;
+  height: 38px;
+  width: 100%;
+  padding: 0px 10px 0px 10px;
+  border-radius: 10px;
+  box-shadow: 0 6px 13.1px rgba(112, 0, 0, 0.48);
+  background-color: #e10d2b;
+  color: #fff;
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: 0.3s;
+  font-family: var(--tipo-secundaria);
+  display: flex;
+  align-items: center;
+}

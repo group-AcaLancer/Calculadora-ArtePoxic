@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./IrregularFilling.css";
+import CalculatorResult from "../../shared/results/CalculatorResult";
+import BtnBefore from "../../shared/btnBefore/BtnBefore";
 
 //Se debe optomizar un poquito los tamaños ya que quedo bajando mucho con el scroll.
 
@@ -45,7 +47,13 @@ const IrregularFilling = () => {
               <br />
               Ingrese los datos estimados de la figura.
               <br />
-              <button onClick={toggleMostrarCompleto}>Mostrar menos</button>
+              <br />
+              <button
+                className="irregularFilling__btn-more less"
+                onClick={toggleMostrarCompleto}
+              >
+                Mostrar menos
+              </button>
             </>
           ) : (
             <>
@@ -55,7 +63,12 @@ const IrregularFilling = () => {
               pequeñas e ir calculando sus medidas.
               <br />
               <br />
-              <button onClick={toggleMostrarCompleto}>Mostrar más</button>
+              <button
+                className="irregularFilling__btn-more more"
+                onClick={toggleMostrarCompleto}
+              >
+                Mostrar más
+              </button>
             </>
           )}
         </p>
@@ -95,18 +108,15 @@ const IrregularFilling = () => {
             display: "flex",
             justifyContent: "space-around",
             alignItems: "center",
+            width: "100%",
           }}
         >
+          <BtnBefore url={"/seleccion_de_forma"} />
           <button className="irregular-filling__form-button">Calcular</button>
-          <Link to={"/"} className="bx bxs-home bx-md irregular__home"></Link>
         </div>
       </form>
 
-      <div className="irregular-filling__result">
-        <h3 className="irregular-filling__result-title">Resultado (gr)</h3>
-        <div className="irregular-filling__result-gr">Catalizador (gr.)</div>
-        <div className="irregular-filling__result-gr">Resina (gr.)</div>
-      </div>
+      <CalculatorResult />
     </section>
   );
 };

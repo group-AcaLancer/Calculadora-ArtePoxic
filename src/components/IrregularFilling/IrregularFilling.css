@@ -1,11 +1,12 @@
 .irregular-filling {
-  background: var(--color-white);
-  max-width: 393px;
-  padding: 1rem;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+  padding: 1rem;
+  background: var(--color-white);
+  gap: 2rem;
 }
 
 .irregular-filling__content {
@@ -15,7 +16,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 2rem;
 }
 
 .irregular-filling__header {
@@ -50,9 +51,17 @@
   text-align: justify;
 }
 
+.irregular-filling__form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 .irregular-filling__form-content {
   width: 100%;
-  margin-bottom: 0.5em;
+  /* margin-bottom: 0.5em; */
   padding: 0 1em;
   display: flex;
   justify-content: center;
@@ -124,6 +133,19 @@
   display: flex;
   align-items: center;
   padding-left: 5px;
+}
+
+.irregularFilling__btn-more {
+  font-weight: bold;
+}
+
+.less::after {
+  content: " ↑";
+  font-size: 1.1rem;
+}
+.more::after {
+  content: " ↓";
+  font-size: 1.1rem;
 }
 
 @media (width > 768px) {

@@ -1,11 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../components/home/Home";
 import SelectResin from "../components/SelectResin/SelectResin";
-import SelecionDeForma from "../components/selecionDeForma/SelecionDeForma";
 import CircularCalculator from "../components/circularCalculator/CircularCalculator";
 import RectangularCalculator from "../components/reactangularCalculator/RectangularCalculator";
 import IrregularFilling from "../components/IrregularFilling/IrregularFilling";
-
+import ShapeSelection from "../components/shapeSelection/ShapeSelection";
 
 export const router = createBrowserRouter([
   {
@@ -14,23 +13,22 @@ export const router = createBrowserRouter([
   },
   {
     path: "/seleccion_resina",
-    element: <SelectResin/>,
+    element: <SelectResin />,
   },
   {
     path: "/seleccion_de_forma",
-    element:<SelecionDeForma/>,
+    element: <ShapeSelection />,
   },
   {
     path: "/calculo_circular",
-    element:<CircularCalculator/> , 
-   },
-   {
+    element: <CircularCalculator />,
+  },
+  {
     path: "/calculo_rectangular",
-    element: <RectangularCalculator/>,
-   },
-   {
+    element: <RectangularCalculator />,
+  },
+  {
     path: "/calculo_irregular",
-    element: <IrregularFilling/>,
-   }
-
+    element: <IrregularFilling />,
+  },
 ]);

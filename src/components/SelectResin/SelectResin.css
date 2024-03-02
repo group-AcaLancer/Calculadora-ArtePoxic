@@ -1,19 +1,21 @@
 .resin {
-  transition: 0.3s;
   width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 20px;
+  gap: 2rem;
   background: var(--color-white);
+  height: 100vh;
 }
 .container {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  gap: 30px;
-  padding: 0px 10px;
+  justify-content: start;
+  gap: 2rem;
+  padding: 0 1rem;
 }
 .resin_title {
   text-align: center;
@@ -43,136 +45,30 @@
   font-family: var(--tipo-principal);
 }
 
-.resin_select {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  max-width: 355px;
+.resin_btn {
   width: 100%;
-  gap: 10px;
-}
-
-.resin_select-badge {
-  max-width: 355px;
-  background: white;
-  border: 1px solid #ff0000;
-  color: #333;
-  padding: 5px;
-  padding-left: 20px;
-  height: 40px;
+  height: max-content;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 18px;
-  border-radius: 5px;
-  box-shadow: 0px 5px 5px -1px #0000004d;
-  cursor: pointer;
+  justify-content: space-evenly;
+  flex-direction: row-reverse;
+  margin-top: 1rem;
 }
-.resin_options {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 80px;
-}
-.resin_select-option {
-  position: absolute;
-  top: 120%; /* Coloca el menú desplegable justo debajo del botón */
-  left: 0;
-  background-color: white; /* Ajusta el color de fondo según tus necesidades */
-  border: 1px solid #ff0000; /* Añade un borde para separar visualmente el menú */
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Añade una sombra suave */
-  display: none; /* Oculta el menú por defecto */
-}
-
-.resin_select:hover .resin_select-option {
-  display: block; /* Muestra el menú cuando el botón está en estado hover */
-}
-
-.resin_select-option > li {
-  padding: 5px;
-  cursor: pointer;
-  transition: 0.3s;
-  border-radius: 10px 10px 0px 0px;
-}
-.resin_select-option > li:nth-child(2) {
-  border-radius: 0px 0px 10px 10px;
-  border-top: 2px solid #ff000056;
-}
-
-.resin_select-option > li:hover {
-  transition: 0.3s;
-  background: #ff000056;
-}
-.resin_select-option > li:focus {
-  transition: 0.3s;
-  background: #ff000056;
-}
-
-.resin_form-button {
-  max-width: 150px;
-  height: 38px;
-  width: 100%;
-  padding: 0px 10px 0px 10px;
-  border-radius: 10px;
-  box-shadow: 0 6px 13.1px rgba(112, 0, 0, 0.48);
-  background-color: #e10d2b;
-  color: #fff;
-  font-size: 1.8rem;
-  cursor: pointer;
-  transition: 0.3s;
-  font-family: var(--tipo-secundaria);
-  display: flex;
-  align-items: center;
-}
-
-.resin_content-btn {
-  display: flex;
-  align-items: center;
-  gap: 5rem;
-}
-
-.resin__arrow {
-  color: red;
-  cursor: pointer;
-  text-shadow: 0 6px 13.1px rgba(112, 0, 0, 0.48);
-  transition: 0.3s;
-}
-.resin_form-button:active,
-.resin__arrow:active {
-  transition: 0.3s;
-  opacity: 50%;
-}
-
-.resin_select-alert {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 250px;
-  padding: 5px;
-  border-radius: 5px;
-  color: red;
-  font-weight: 500;
-  border-bottom: 1px solid red;
-}
-/* media quierys  */
 
 @media (width > 768px) {
   .resin {
-    transition: 0.3s;
     width: 25rem;
     height: 95vh;
     margin: 2.5vh auto;
     border-radius: 2.5rem;
-    box-shadow: 0 0 5px #7000007a;
-    overflow: hidden;
+    box-shadow: 0 0 5px var(--color-shadow-red);
+    overflow-y: hidden;
+    gap: 4rem;
   }
-}
-
-@media (height < 794px) and (width <= 1024px) {
-  .resin {
+  .container {
+    gap: 4rem;
+  }
+  .resin_title {
+    font-size: 1.5rem;
   }
 }

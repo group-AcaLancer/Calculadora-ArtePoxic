@@ -3,8 +3,19 @@ import { useForm } from "react-hook-form";
 import "./RectangularCalculator.css";
 import CalculatorResult from "../../shared/results/CalculatorResult";
 import BtnBefore from "../../shared/btnBefore/BtnBefore";
+import { useEffect, useState } from "react";
+import { getAreaRectangle } from "../../utilities/area/area";
+import {
+  resinHighThickness,
+  resinLowThickness,
+} from "../../utilities/resin/resin.js";
+import useSelectedType from "../../stores/selectedType.store.js";
 
 const RectangularCalculator = () => {
+  const option = useSelectedType((state) => state.selectedType);
+
+  const [getResult, setGetResult] = useState({});
+
   const {
     register,
     reset,
@@ -12,16 +23,26 @@ const RectangularCalculator = () => {
     handleSubmit,
   } = useForm();
 
-  const submit = (data) => {
-    console.log(data);
+  const handleResult = (data) => {
+    const { base, height, thickness } = data;
 
-    reset();
+    const getArea = getAreaRectangle(base, height);
+
+    if (option === "high") {
+      const getResin = resinHighThickness(getArea, thickness);
+      setGetResult(getResin);
+      reset();
+    } else {
+      const getResin = resinLowThickness(getArea, thickness);
+      setGetResult(getResin);
+      reset();
+    }
   };
 
   return (
     <section className="rectangular">
       {/* <!-- RECTANGULAR CALCULATOR FORM --> */}
-      <form className="rectangular__form" onSubmit={handleSubmit(submit)}>
+      <form className="rectangular__form" onSubmit={handleSubmit(handleResult)}>
         <figure className="rectangular__figure">
           <img src={rectangular} className="rectangular__img" />
           <h3 className="rectangular__subtitle--form">Rectangular</h3>
@@ -57,21 +78,19 @@ const RectangularCalculator = () => {
             placeholder="Espesor (mm)"
             className="rectangular__input"
             step="any"
-            {...register("density", { required: true })}
+            {...register("thickness", { required: true })}
           />
           <small className="rectangular__message">
-            {errors.density?.type === "required" && "* Espesor es requiredo"}
+            {errors.thickness?.type === "required" && "* Espesor es requiredo"}
           </small>
         </div>
-        <div
-          className="rectangular__btn-content"
-        >
+        <div className="rectangular__btn-content">
           <BtnBefore url={"/seleccion_de_forma"} />
           <button className="rectangular__btn">Calcular</button>
         </div>
       </form>
       {/* <!-- RECTANGULAR CALCULATOR RESULT --> */}
-      <CalculatorResult />
+      <CalculatorResult catalyst={getResult.catalyst} resin={getResult.resin} />
     </section>
   );
 };

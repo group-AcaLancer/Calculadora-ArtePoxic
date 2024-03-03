@@ -1,13 +1,21 @@
+import { useEffect } from "react";
 import BtnBefore from "../../shared/btnBefore/BtnBefore";
 import BtnNext from "../../shared/btnNext/BtnNext";
 import Header from "../../shared/header/Header";
+import useSelectedType from "../../stores/selectedType.store";
 import "./SelectResin.css";
 import Select from "react-select";
 
 const SelectResin = () => {
+  const setOption = useSelectedType((state) => state.setSelectedType);
+
   const handleSelectOption = ({ value }) => {
-    console.log(value);
+    setOption(value);
   };
+
+  useEffect(() => {
+    setOption(null);
+  }, []);
 
   const selectOption = [
     {

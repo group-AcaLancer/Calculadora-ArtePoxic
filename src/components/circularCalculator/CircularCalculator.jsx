@@ -3,8 +3,19 @@ import { useForm } from "react-hook-form";
 import "./CircularCalculator.css";
 import CalculatorResult from "../../shared/results/CalculatorResult";
 import BtnBefore from "../../shared/btnBefore/BtnBefore";
+import { getAreaCircle } from "../../utilities/area/area";
+import useSelectedType from "../../stores/selectedType.store";
+import { useState } from "react";
+import {
+  resinHighThickness,
+  resinLowThickness,
+} from "../../utilities/resin/resin";
 
 const CircularCalculator = () => {
+  const option = useSelectedType((state) => state.selectedType);
+  const [getResult, setGetResult] = useState({});
+  // const [isError, setIsError] = useState(false);
+
   const {
     register,
     reset,
@@ -12,19 +23,26 @@ const CircularCalculator = () => {
     handleSubmit,
   } = useForm();
 
-  const submit = (data) => {
-    console.log(data);
+  const handleResult = (data) => {
+    const { diameter, thickness } = data;
 
-    reset({
-      diameter: "",
-      density: "",
-    });
+    const getArea = getAreaCircle(diameter);
+
+    if (option === "high") {
+      const getResin = resinHighThickness(getArea, thickness);
+      setGetResult(getResin);
+      reset();
+    } else {
+      const getResin = resinLowThickness(getArea, thickness);
+      setGetResult(getResin);
+      reset();
+    }
   };
 
   return (
     <section className="circular">
       {/* <!-- CIRCULAR CALCULATOR FORM --> */}
-      <form className="circular__form" onSubmit={handleSubmit(submit)}>
+      <form className="circular__form" onSubmit={handleSubmit(handleResult)}>
         <figure className="circular__figure">
           <img src={circular} className="circular__img" />
           <h3 className="circular__subtitle--form">Circular</h3>
@@ -48,21 +66,19 @@ const CircularCalculator = () => {
             placeholder="Espesor (mm)"
             className="circular__input"
             step="any"
-            {...register("density", { required: true })}
+            {...register("thickness", { required: true })}
           />
           <small className="circular__message">
-            {errors.density?.type === "required" && "* Espesor es requiredo"}
+            {errors.thickness?.type === "required" && "* Espesor es requiredo"}
           </small>
         </div>
-        <div
-          className="circular__btn-conten"
-        >
+        <div className="circular__btn-conten">
           <BtnBefore url={"/seleccion_de_forma"} />
           <button className="circular__btn">Calcular</button>
         </div>
       </form>
       {/* <!-- CIRCULAR CALCULATOR FORM --> */}
-      <CalculatorResult />
+      <CalculatorResult catalyst={getResult.catalyst} resin={getResult.resin} />
     </section>
   );
 };

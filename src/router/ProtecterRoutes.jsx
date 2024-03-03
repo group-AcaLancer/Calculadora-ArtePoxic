@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import { Navigate } from 'react-router-dom'
+import { Navigate } from "react-router-dom";
+import useSelectedType from "../stores/selectedType.store";
 
-const ProtectedRoute = ({children}) => {
-    const [ensayo, setEnsayo] = useState(false)
+const ProtectedRoute = ({ children }) => {
+  const option = useSelectedType((state) => state.selectedType);
 
-    return <>{ensayo ? children : <Navigate to="/" />}</>;
-}
+  return <>{option ? children : <Navigate to="/seleccion_resina" />}</>;
+};
 
-export default ProtectedRoute
+export default ProtectedRoute;

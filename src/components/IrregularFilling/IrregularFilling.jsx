@@ -3,11 +3,18 @@ import "./IrregularFilling.css";
 import CalculatorResult from "../../shared/results/CalculatorResult";
 import BtnBefore from "../../shared/btnBefore/BtnBefore";
 import { useForm } from "react-hook-form";
-
-//Se debe optomizar un poquito los tamaños ya que quedo bajando mucho con el scroll.
+import useSelectedType from "../../stores/selectedType.store";
+import {
+  resinHighThickness,
+  resinLowThickness,
+} from "../../utilities/resin/resin";
 
 const IrregularFilling = () => {
   const [mostrarCompleto, setMostrarCompleto] = useState(true);
+
+  const option = useSelectedType((state) => state.selectedType);
+
+  const [getResult, setGetResult] = useState({});
 
   const {
     register,
@@ -16,13 +23,18 @@ const IrregularFilling = () => {
     formState: { errors },
   } = useForm();
 
-  const submit = (data) => {
-    console.log(data);
+  const handleResult = (data) => {
+    const { area, thickness } = data;
 
-    reset({
-      area: "",
-      espesor: "",
-    });
+    if (option === "high") {
+      const getResin = resinHighThickness(area, thickness);
+      setGetResult(getResin);
+      reset();
+    } else {
+      const getResin = resinLowThickness(area, thickness);
+      setGetResult(getResin);
+      reset();
+    }
   };
 
   const toggleMostrarCompleto = () => {
@@ -89,7 +101,10 @@ const IrregularFilling = () => {
         </button>
       </div>
 
-      <form onSubmit={handleSubmit(submit)} className="irregular-filling__form">
+      <form
+        onSubmit={handleSubmit(handleResult)}
+        className="irregular-filling__form"
+      >
         <div className="irregular-filling__form-content">
           <div className="irregular-filling__form-content-input">
             {/* <label className="irregular-filling__form-label" htmlFor="area">
@@ -118,12 +133,12 @@ const IrregularFilling = () => {
             <input
               className="irregular-filling__form-imput"
               type="number"
-              name="espesor"
+              name="thickness"
               step="any"
               placeholder="Espesor (mm)"
-              {...register("espesor", { required: true })}
+              {...register("thickness", { required: true })}
             />
-            {errors.espesor && (
+            {errors.thickness && (
               <span className="irregular-filling__form-message-err">
                 * Espesor es requiredo*
               </span>
@@ -136,7 +151,7 @@ const IrregularFilling = () => {
         </div>
       </form>
 
-      <CalculatorResult />
+      <CalculatorResult catalyst={getResult.catalyst} resin={getResult.resin} />
     </section>
   );
 };

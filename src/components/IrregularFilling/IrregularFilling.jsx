@@ -8,15 +8,14 @@ import {
   resinHighThickness,
   resinLowThickness,
 } from "../../utilities/resin/resin";
+import { getAreaMts2 } from "../../utilities/area/area";
 
 const IrregularFilling = () => {
   const [mostrarCompleto, setMostrarCompleto] = useState(true);
   const [getResult, setGetResult] = useState({});
-  const [formErrors, setFormErrors] = useState({})
-  
+  const [formErrors, setFormErrors] = useState({});
 
   const option = useSelectedType((state) => state.selectedType);
-  
 
   const {
     register,
@@ -25,18 +24,17 @@ const IrregularFilling = () => {
     formState: { errors },
   } = useForm();
 
-  
-  
   const handleResult = (data) => {
     const { area, thickness } = data;
     const element = document.getElementById("calculatorResult");
-    
+    const getArea = getAreaMts2(area);
+
     if (option === "high") {
-      const getResin = resinHighThickness(area, thickness);
+      const getResin = resinHighThickness(getArea, thickness);
       setGetResult(getResin);
       reset();
     } else {
-      const getResin = resinLowThickness(area, thickness);
+      const getResin = resinLowThickness(getArea, thickness);
       setGetResult(getResin);
       reset();
     }
@@ -44,26 +42,22 @@ const IrregularFilling = () => {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
-
   };
-  
+
   useEffect(() => {
-    setFormErrors(errors)
-  }, [errors])
-  
-  
+    setFormErrors(errors);
+  }, [errors]);
+
   useEffect(() => {
-    const err = Object.keys(formErrors).length === 0
+    const err = Object.keys(formErrors).length === 0;
     if (!err) {
-      setGetResult({})
+      setGetResult({});
     }
-    
-  }, [Object.keys(formErrors).length === 0])
-  
+  }, [Object.keys(formErrors).length === 0]);
+
   const toggleMostrarCompleto = () => {
     setMostrarCompleto(!mostrarCompleto);
   };
-
 
   return (
     <section className="irregular-filling">
@@ -129,50 +123,43 @@ const IrregularFilling = () => {
         onSubmit={handleSubmit(handleResult)}
         className="irregular-filling__form"
       >
-        
         <div className="irregular-filling__form-content">
           <div className="irregular-filling__form-content-input">
-          
             <input
               className="irregular-filling__form-imput"
               type="number"
               name="area"
               step="any"
               placeholder="Área (cm²)"
-              {...register("area", { required: true, min:0.01 })}
+              {...register("area", { required: true, min: 0.01 })}
             />
-            {
-            errors.area?.type === "required" && (
+            {errors.area?.type === "required" && (
               <span className="irregular-filling__form-message-err">
                 * Area es requireda
               </span>
-            )
-            }
-            {
-            errors.area?.type === "min" && (
+            )}
+            {errors.area?.type === "min" && (
               <span className="irregular-filling__form-message-err">
                 * Número no valido
               </span>
-            )
-            }
+            )}
           </div>
 
           <div className="irregular-filling__form-content-input">
-    
             <input
               className="irregular-filling__form-imput"
               type="number"
               name="thickness"
               step="any"
               placeholder="Espesor (mm)"
-              {...register("thickness", { required: true, min:0.01 })}
+              {...register("thickness", { required: true, min: 0.01 })}
             />
-            {errors.thickness?.type === 'required' && (
+            {errors.thickness?.type === "required" && (
               <span className="irregular-filling__form-message-err">
                 * Espesor es requiredo*
               </span>
             )}
-            {errors.thickness?.type === 'min' && (
+            {errors.thickness?.type === "min" && (
               <span className="irregular-filling__form-message-err">
                 * Número no es valido*
               </span>
@@ -185,7 +172,11 @@ const IrregularFilling = () => {
         </div>
       </form>
 
-      <CalculatorResult id="calculatorResult" catalyst={getResult.catalyst} resin={getResult.resin} />
+      <CalculatorResult
+        id="calculatorResult"
+        catalyst={getResult.catalyst}
+        resin={getResult.resin}
+      />
     </section>
   );
 };

@@ -1,9 +1,70 @@
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import "./IrregularFilling.css";
-
-//Se debe optomizar un poquito los tamaños ya que quedo bajando mucho con el scroll.
+import CalculatorResult from "../../shared/results/CalculatorResult";
+import BtnBefore from "../../shared/btnBefore/BtnBefore";
+import { useForm } from "react-hook-form";
+import useSelectedType from "../../stores/selectedType.store";
+import {
+  resinHighThickness,
+  resinLowThickness,
+} from "../../utilities/resin/resin";
 
 const IrregularFilling = () => {
+  const [mostrarCompleto, setMostrarCompleto] = useState(true);
+  const [getResult, setGetResult] = useState({});
+  const [formErrors, setFormErrors] = useState({})
+  
+
+  const option = useSelectedType((state) => state.selectedType);
+  
+
+  const {
+    register,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  
+  
+  const handleResult = (data) => {
+    const { area, thickness } = data;
+    const element = document.getElementById("calculatorResult");
+    
+    if (option === "high") {
+      const getResin = resinHighThickness(area, thickness);
+      setGetResult(getResin);
+      reset();
+    } else {
+      const getResin = resinLowThickness(area, thickness);
+      setGetResult(getResin);
+      reset();
+    }
+
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+
+  };
+  
+  useEffect(() => {
+    setFormErrors(errors)
+  }, [errors])
+  
+  
+  useEffect(() => {
+    const err = Object.keys(formErrors).length === 0
+    if (!err) {
+      setGetResult({})
+    }
+    
+  }, [Object.keys(formErrors).length === 0])
+  
+  const toggleMostrarCompleto = () => {
+    setMostrarCompleto(!mostrarCompleto);
+  };
+
+
   return (
     <section className="irregular-filling">
       <div className="irregular-filling__content">
@@ -15,7 +76,11 @@ const IrregularFilling = () => {
           />
           <h2 className="irregular-filling__header-title">Relleno Irregular</h2>
         </div>
-        <p className="irregular-filling__paragraph">
+        <p
+          className={`irregular-filling__paragraph ${
+            mostrarCompleto ? "onparagraph" : ""
+          }`}
+        >
           Calculo de Rendimiento <br />
           En caso de una pieza irregular para calcular la cantidad de producto,
           es necesario dividir la forma en figuras regulares mas pequeñas e ir
@@ -25,7 +90,7 @@ const IrregularFilling = () => {
           En caso de que eso no sea posible, dada la irregularidad, recomendamos
           que proceda de la siguiente manera: <br />
           <br />
-          Prepare una cantidad de resina que considere insuficiente:
+          Prepare una cantidad de resina que considere insuficiente.
           <br />
           Aplique la mezcla directamente en el molde, según el nivel alcanzado
           puede calcular cuanto le puede hacer falta.
@@ -35,56 +100,92 @@ const IrregularFilling = () => {
           <br />
           <br />
           Ingrese los datos estimados de la figura.
+          <br />
+          <br />
         </p>
+        <button
+          className="irregularFilling__btn-more"
+          onClick={toggleMostrarCompleto}
+        >
+          {mostrarCompleto ? (
+            <div className="container-chevron">
+              Mostrar Más{" "}
+              <span className="chevron">
+                <i className="bx bx-chevron-down"></i>
+              </span>
+            </div>
+          ) : (
+            <div className="container-chevron">
+              Mostrar Menos{" "}
+              <span className="chevron">
+                <i className="bx bx-chevron-up"></i>
+              </span>
+            </div>
+          )}
+        </button>
       </div>
 
-      <form className="irregular-filling__form">
+      <form
+        onSubmit={handleSubmit(handleResult)}
+        className="irregular-filling__form"
+      >
+        
         <div className="irregular-filling__form-content">
           <div className="irregular-filling__form-content-input">
-            {/* <label className="irregular-filling__form-label" htmlFor="area">
-              Área (cm)
-            </label> */}
+          
             <input
               className="irregular-filling__form-imput"
               type="number"
               name="area"
-              required="true"
+              step="any"
               placeholder="Área (cm²)"
+              {...register("area", { required: true, min:0.01 })}
             />
+            {
+            errors.area?.type === "required" && (
+              <span className="irregular-filling__form-message-err">
+                * Area es requireda
+              </span>
+            )
+            }
+            {
+            errors.area?.type === "min" && (
+              <span className="irregular-filling__form-message-err">
+                * Número no valido
+              </span>
+            )
+            }
           </div>
 
           <div className="irregular-filling__form-content-input">
-            {/* <label className="irregular-filling__form-label" htmlFor="masa">
-              Espesor (cm)
-            </label> */}
-
+    
             <input
               className="irregular-filling__form-imput"
               type="number"
-              name="masa"
-              required="true"
+              name="thickness"
+              step="any"
               placeholder="Espesor (mm)"
+              {...register("thickness", { required: true, min:0.01 })}
             />
+            {errors.thickness?.type === 'required' && (
+              <span className="irregular-filling__form-message-err">
+                * Espesor es requiredo*
+              </span>
+            )}
+            {errors.thickness?.type === 'min' && (
+              <span className="irregular-filling__form-message-err">
+                * Número no es valido*
+              </span>
+            )}
           </div>
         </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-around",
-            alignItems: "center",
-            marginTop: "25px",
-          }}
-        >
+        <div className="irregular-filling__form-button-content">
+          <BtnBefore url={"/seleccion_de_forma"} />
           <button className="irregular-filling__form-button">Calcular</button>
-          <Link to={"/"} className="bx bxs-home bx-md irregular__home"></Link>
         </div>
       </form>
 
-      <div className="irregular-filling__result">
-        <h3 className="irregular-filling__result-title">Resultado (gr)</h3>
-        <div className="irregular-filling__result-gr">Catalizador (gr.)</div>
-        <div className="irregular-filling__result-gr">Resina (gr.)</div>
-      </div>
+      <CalculatorResult id="calculatorResult" catalyst={getResult.catalyst} resin={getResult.resin} />
     </section>
   );
 };

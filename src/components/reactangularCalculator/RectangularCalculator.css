@@ -92,6 +92,14 @@
   color: #ff0000;
 }
 
+.rectangular__btn-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 25px;
+  width: 100%;
+}
+
 .rectangular__btn {
   padding: 0px 15px 0px 15px;
   background: #e10d2b;
@@ -117,49 +125,6 @@
   opacity: 50%;
 }
 /* Rectangular Calculator Results */
-.rectangular__summary {
-  width: 100%;
-  max-width: 25rem;
-  height: 198px;
-  background: #0585c6;
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 2rem;
-  padding: 1.5rem 1rem;
-  box-shadow: -8px 8px 10px 0px #004a7436;
-}
-
-.rectangular__subtitle--summary {
-  font-size: 20px;
-  text-align: center;
-  color: #ffffff;
-  font-weight: 700;
-}
-
-.rectangular__output {
-  width: 90%;
-  height: 40px;
-  outline: none;
-  border-radius: 6px;
-  border: 1px solid #ffffff;
-  color: #ffffff;
-  font-family: Century Gothic;
-  line-height: 18.39px;
-  font-size: 0.8rem;
-  font-weight: 400;
-  padding: 0.3rem;
-  display: grid;
-  grid-template-columns: 1fr 40%;
-  text-align: center;
-}
-
-.rectangular__output strong {
-  justify-self: center;
-  font-weight: 700;
-}
 
 /* Responsive Design */
 @media (width > 768px) {
@@ -169,11 +134,23 @@
     margin: 2.5vh auto;
     border-radius: 2.5rem;
     box-shadow: 0 0 5px #7000007a;
+    overflow-y: auto;
+    justify-content: start;
   }
 }
 
-@media (height < 794px) and (width <= 1024px) {
+@media (width > 768px) and (height >= 900px) {
   .rectangular {
-    overflow: scroll;
+    justify-content: space-evenly;
+  }
+  .rectangular__form {
+    margin: 0;
+  }
+  .rectangular__title {
+    font-size: 1.5rem;
+    margin: 2rem 0;
+  }
+  .rectangular__btn-content {
+    margin-top: 2.5rem;
   }
 }

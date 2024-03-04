@@ -5,7 +5,7 @@ import CalculatorResult from "../../shared/results/CalculatorResult";
 import BtnBefore from "../../shared/btnBefore/BtnBefore";
 import { getAreaCircle } from "../../utilities/area/area";
 import useSelectedType from "../../stores/selectedType.store";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   resinHighThickness,
   resinLowThickness,
@@ -14,7 +14,7 @@ import {
 const CircularCalculator = () => {
   const option = useSelectedType((state) => state.selectedType);
   const [getResult, setGetResult] = useState({});
-  // const [isError, setIsError] = useState(false);
+  const [formErrors, setFormErrors] = useState({})
 
   const {
     register,
@@ -25,6 +25,7 @@ const CircularCalculator = () => {
 
   const handleResult = (data) => {
     const { diameter, thickness } = data;
+    const element = document.getElementById("calculatorResult");
 
     const getArea = getAreaCircle(diameter);
 
@@ -37,7 +38,24 @@ const CircularCalculator = () => {
       setGetResult(getResin);
       reset();
     }
+
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
   };
+
+  useEffect(() => {
+    setFormErrors(errors)
+  }, [errors])
+  
+  
+  useEffect(() => {
+    const err = Object.keys(formErrors).length === 0
+    if (!err) {
+      setGetResult({})
+    }
+    
+  }, [Object.keys(formErrors).length === 0])
 
   return (
     <section className="circular">
@@ -54,10 +72,11 @@ const CircularCalculator = () => {
             placeholder="Diámetro (cm)"
             className="circular__input"
             step="any"
-            {...register("diameter", { required: true })}
+            {...register("diameter", { required: true, min:0.01 })}
           />
           <small className="circular__message">
             {errors.diameter?.type === "required" && "* Diámetro es requiredo"}
+            {errors.diameter?.type === "min" && "* Numero no valido"}
           </small>
         </div>
         <div className="circular__row">
@@ -66,10 +85,11 @@ const CircularCalculator = () => {
             placeholder="Espesor (mm)"
             className="circular__input"
             step="any"
-            {...register("thickness", { required: true })}
+            {...register("thickness", { required: true, min:0.01 })}
           />
           <small className="circular__message">
             {errors.thickness?.type === "required" && "* Espesor es requiredo"}
+            {errors.thickness?.type === "min" && "* Numero no valido"}
           </small>
         </div>
         <div className="circular__btn-conten">
@@ -78,7 +98,7 @@ const CircularCalculator = () => {
         </div>
       </form>
       {/* <!-- CIRCULAR CALCULATOR FORM --> */}
-      <CalculatorResult catalyst={getResult.catalyst} resin={getResult.resin} />
+      <CalculatorResult id='calculatorResult' catalyst={getResult.catalyst} resin={getResult.resin} />
     </section>
   );
 };

@@ -21,7 +21,7 @@
   color: #e10d2b;
   font-size: 1.2em;
   font-weight: 700;
-  text-align: center;
+  text-align: center; 
 }
 
 .shapeSelection__content-btn {
@@ -56,6 +56,7 @@
   box-shadow: 0px 4px 4px 0px #00000040;
   cursor: pointer;
   font-size: 15px;
+  transition: transform 0.3s ease-in-out;
 }
 
 .shapeSelection__btn1 > img {
@@ -77,6 +78,7 @@
   box-shadow: 0px 4px 4px 0px #00000040;
   cursor: pointer;
   font-size: 15px;
+  transition: transform 0.3s ease-in-out;
 }
 
 .shapeSelection__btn2 > img {
@@ -95,6 +97,7 @@
   box-shadow: 0px 4px 4px 0px #00000040;
   cursor: pointer;
   font-size: 15px;
+  transition: transform 0.3s ease-in-out;
 }
 
 .shapeSelection__btn3 > img {
@@ -155,6 +158,12 @@
   }
   .shapeSelection__title {
     font-size: 1.5rem;
+  }
+
+  .shapeSelection__btn1:hover,
+  .shapeSelection__btn2:hover,
+  .shapeSelection__btn3:hover{
+    transform: scale(1.1);
   }
 }
 

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import BtnBefore from "../../shared/btnBefore/BtnBefore";
 import BtnNext from "../../shared/btnNext/BtnNext";
 import Header from "../../shared/header/Header";
@@ -8,6 +8,8 @@ import Select from "react-select";
 
 const SelectResin = () => {
   const setOption = useSelectedType((state) => state.setSelectedType);
+
+  const [onAlert, setOnAlert] = useState(false)
 
   const handleSelectOption = ({ value }) => {
     setOption(value);
@@ -80,7 +82,7 @@ const SelectResin = () => {
           <h3 className="resin_container-title">Cálculo consumo</h3>
         </div>
 
-        <div className="resin_alert ">
+        <div className={`resin_alert ${onAlert ? '' : 'resin_alert-off'}`}>
           <p className="resin_alert-error">Tiene que seleccionar una resina</p>
         </div>
 
@@ -93,7 +95,7 @@ const SelectResin = () => {
         />
 
         <div className="resin_btn">
-          <BtnNext url="/seleccion_de_forma" />
+          <BtnNext url="/seleccion_de_forma" setOnAlert={setOnAlert} />
           <BtnBefore url={"/"} />
         </div>
       </article>

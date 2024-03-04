@@ -56,7 +56,6 @@ const IrregularFilling = () => {
     const err = Object.keys(formErrors).length === 0
     if (!err) {
       setGetResult({})
-      console.log('se resetea la tabla')
     }
     
   }, [Object.keys(formErrors).length === 0])

@@ -53,10 +53,11 @@
   justify-content: space-evenly;
   flex-direction: row-reverse;
   margin-top: 1rem;
+  padding-bottom: 1em;
 }
 
 .resin_alert {
-  width: 100%;
+  width: 70%;
   padding: 0.2rem;
   border: 1px solid var(--color-red);
   border-radius: 10px;
@@ -86,6 +87,7 @@
   .resin_title {
     font-size: 1.5rem;
   }
+
 }
 
 @media (width > 768px) and (height >= 599px) {

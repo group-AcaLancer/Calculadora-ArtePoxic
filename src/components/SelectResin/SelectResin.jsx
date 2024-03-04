@@ -80,6 +80,10 @@ const SelectResin = () => {
           <h3 className="resin_container-title">Cálculo consumo</h3>
         </div>
 
+        <div className="resin_alert ">
+          <p className="resin_alert-error">Tiene que seleccionar una resina</p>
+        </div>
+
         <Select
           options={selectOption}
           defaultValue={{ label: "Selecciona un tipo de resina", value: null }}

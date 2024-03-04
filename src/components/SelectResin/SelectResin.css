@@ -55,6 +55,21 @@
   margin-top: 1rem;
 }
 
+.resin_alert {
+  width: 100%;
+  padding: 0.2rem;
+  border: 1px solid var(--color-red);
+  border-radius: 10px;
+}
+.resin_alert-error {
+  text-align: center;
+  color: var(--color-red);
+}
+.resin_alert-off {
+  display: none;
+  visibility: none;
+}
+
 @media (width > 768px) {
   .resin {
     width: 25rem;

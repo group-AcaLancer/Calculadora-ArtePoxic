@@ -12,11 +12,11 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage />,
   },
   {
     path: "/seleccion_resina",
-    element: <SelectResin />  
+    element: <SelectResin />,
   },
   {
     path: "/seleccion_de_forma",
@@ -24,27 +24,30 @@ export const router = createBrowserRouter([
       <ProtectedRoute>
         <ShapeSelection />
       </ProtectedRoute>
-    )
+    ),
   },
   {
     path: "/calculo_circular",
     element: (
       <ProtectedRoute>
         <CircularCalculator />,
-      </ProtectedRoute>)
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/calculo_rectangular",
     element: (
       <ProtectedRoute>
         <RectangularCalculator />
-      </ProtectedRoute>),
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/calculo_irregular",
-    element:(
+    element: (
       <ProtectedRoute>
         <IrregularFilling />
-      </ProtectedRoute>),
+      </ProtectedRoute>
+    ),
   },
 ]);

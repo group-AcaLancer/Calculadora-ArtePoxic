@@ -1,5 +1,5 @@
 .header {
-  background: url("public/img/bg/bg-header.svg");
+  background: url("./img/bg/bg-header.svg");
   background-size: cover;
   width: 100%;
   height: 7rem;
